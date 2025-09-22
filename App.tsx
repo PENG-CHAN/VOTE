@@ -6,7 +6,7 @@ import PollCard from './components/PollCard.tsx';
 import { Poll, Comment as CommentData, CommentType } from './types.ts';
 
 // FIX: Initialize GoogleGenAI with named apiKey parameter using process.env.API_KEY.
-const ai = new GoogleGenAI({apiKey: process.env.API_KEY!});
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GOOGLE_API_KEY as string });
 
 const App: React.FC = () => {
   const [polls, setPolls] = useState<Poll[]>([]);
