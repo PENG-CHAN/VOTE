@@ -58,26 +58,34 @@ const App: React.FC = () => {
 
       // FIX: Use ai.models.generateContent with the correct model and parameters according to guidelines.
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: prompt,
-        config: {
-            responseMimeType: "application/json",
-            responseSchema: {
-                type: Type.OBJECT,
-                properties: {
-                    pro_arguments: {
-                        type: Type.ARRAY,
-                        items: { type: Type.STRING }
-                    },
-                    con_arguments: {
-                        type: Type.ARRAY,
-                        items: { type: Type.STRING }
-                    }
-                },
-                required: ["pro_arguments", "con_arguments"]
-            }
+  model: "gemini-1.5-flash", // 或 gemini-2.0-flash-preview，看你需要的模型
+  contents: [
+    {
+      role: "user",
+      parts: [
+        { text: prompt }
+      ]
+    }
+  ],
+  config: {
+    responseMimeType: "application/json",
+    responseSchema: {
+      type: Type.OBJECT,
+      properties: {
+        pro_arguments: {
+          type: Type.ARRAY,
+          items: { type: Type.STRING }
+        },
+        con_arguments: {
+          type: Type.ARRAY,
+          items: { type: Type.STRING }
         }
-      });
+      },
+      required: ["pro_arguments", "con_arguments"]
+    }
+  }
+});
+
       
       // FIX: Access generated text directly from the 'text' property of the response.
       const jsonText = response.text;
