@@ -1,0 +1,5 @@
+{
+  "name": "社會議題投票平台",
+  "description": "一個社群媒體平台，讓使用者可以對社會議題發起投票，並在正反兩方的論證區塊中發表意見。",
+  "requestFramePermissions": []
+}
